@@ -1,0 +1,36 @@
+<header class="bg-white py-4">
+  <div class="container-fluid">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-12 col-md-12 col-12">
+        <div class="head d-flex align-items-center gap-4">
+          <button
+            class="btn btn-outline-primary rounded-circle"
+            (click)="back()"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <h4 class="mt-2">User Details</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<section class="mt-4">
+  <div class="container">
+    <div class="content-section p-4 bg-white rounded-3">
+      <div class="image-user text-center">
+        <img
+          class="img-fluid border border-5 border-primary-subtle rounded-circle"
+          [src]="data.avatar"
+          alt=""
+        />
+      </div>
+      <div class="name text-center mt-3">
+        <h4>{{ data.first_name }} {{ data.last_name }}</h4>
+      </div>
+      <div class="email text-center mt-3">
+        <p class="fs-5">{{ data.email }}</p>
+      </div>
+    </div>
+  </div>
+</section>

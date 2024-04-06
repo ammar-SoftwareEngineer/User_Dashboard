@@ -1,0 +1,58 @@
+<div class="page" *ngIf="filteredUsers.length > 0; else msg">
+  <section class="p-4 bg-white rounded-top-3 table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="align-middle">
+        <tr>
+          <th scope="col" class="py-3">Id</th>
+          <th scope="col">Image</th>
+          <th scope="col">FName</th>
+          <th scope="col">LName</th>
+          <th scope="col">Email</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of filteredUsers">
+        <tr class="w-100" [routerLink]="['/userdetails', item.id]">
+          <th class="py-4">{{ item.id }}</th>
+          <td class="">
+            <img class="rounded-circle" [src]="item.avatar" alt="" />
+          </td>
+          <td class="">{{ item.first_name }}</td>
+          <td class="">{{ item.last_name }}</td>
+          <td class="">{{ item.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <div
+    class="pagination-total pt-4 d-flex justify-content-between align-items-center flex-wrap gap-md-0 gap-2 p-4 bg-white rounded-bottom-3"
+  >
+    <div class="total-show-users">
+      <p>Showing: {{ prePage }} of {{ total }}</p>
+    </div>
+    <nav aria-label="Page navigation example" class="">
+      <ul class="pagination justify-content-end">
+        <li class="page-item" (click)="pageClicked(page - 1)">
+          <a class="page-link">Previous</a>
+        </li>
+        <li
+          (click)="pageClicked(item)"
+          *ngFor="let item of pages"
+          class="page-item"
+          [ngClass]="{ active: item == page }"
+        >
+          <a class="page-link">{{ item }}</a>
+        </li>
+
+        <li class="page-item" (click)="pageClicked(page + 1)">
+          <a class="page-link">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<ng-template #msg>
+  <div class="image mx-auto">
+    <img class="w-100" src="./assets/images/No data-amico.svg" alt="" />
+  </div>
+</ng-template>

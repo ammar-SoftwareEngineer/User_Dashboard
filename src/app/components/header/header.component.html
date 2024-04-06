@@ -1,0 +1,27 @@
+<header class="py-3 bg-white shadow-sm">
+  <div class="container-fluid">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-2 col-md-2 col-3">
+        <div class="title mt-1">
+          <h4>Users</h4>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-8 col-9">
+        <div class="search position-relative">
+          <input
+            type="text"
+            id="search"
+            placeholder="Search"
+            class="form-control"
+            name="search"
+            [(ngModel)]="searchText"
+            (input)="onSearch()"
+          />
+          <i
+            class="fas fa-search position-absolute top-50 end-0 me-3 translate-middle-y text-black-50"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

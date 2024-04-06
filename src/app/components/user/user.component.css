@@ -1,0 +1,28 @@
+img {
+    width: 40px;
+}
+
+.table tbody tr:hover {
+    cursor: pointer;
+
+}
+
+.page-link {
+    cursor: pointer;
+}
+
+.image {
+    width: 25%;
+}
+
+@media(max-width:991px) {
+    .image {
+        width: 70%;
+    }
+}
+
+@media(max-width:768px) {
+    .image {
+        width: 100%;
+    }
+}
