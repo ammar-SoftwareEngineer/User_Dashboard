@@ -27,9 +27,9 @@
     class="pagination-total pt-4 d-flex justify-content-between align-items-center flex-wrap gap-md-0 gap-2 p-4 bg-white rounded-bottom-3"
   >
     <div class="total-show-users">
-      <p>Showing: {{ prePage }} of {{ total }}</p>
+      <p *ngIf="isSearch; else search">Showing: {{ prePage }} of {{ total }}</p>
     </div>
-    <nav aria-label="Page navigation example" class="">
+    <nav aria-label="Page navigation example" class="" *ngIf="isSearch">
       <ul class="pagination justify-content-end">
         <li class="page-item" (click)="pageClicked(page - 1)">
           <a class="page-link">Previous</a>
@@ -55,4 +55,7 @@
   <div class="image mx-auto">
     <img class="w-100" src="./assets/images/No data-amico.svg" alt="" />
   </div>
+</ng-template>
+<ng-template #search>
+  <p>Showing: {{ filteredUsers.length }} of {{ total }}</p>
 </ng-template>

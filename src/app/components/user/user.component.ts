@@ -22,9 +22,9 @@ export class UserComponent implements OnInit {
   prePage: number = 0;
   pages: number[] = [];
   name: any;
-  dataName: any;
+  dataName: any[] = [];
   searchText: string = '';
-
+  isSearch: boolean = false;
   ngOnInit(): void {
     this.searchPages();
     this.getAllUser();
@@ -38,6 +38,11 @@ export class UserComponent implements OnInit {
         this.totalPage = response.total_pages;
         for (let i = 1; i <= this.totalPage; i++) {
           this.pages.push(i);
+          this._UserService.getAllUsers(i).subscribe({
+            next: (response) => {
+              this.dataName.push(...response.data);
+            },
+          });
         }
         console.log(this.pages);
         this.prePage = response.per_page;
@@ -45,6 +50,7 @@ export class UserComponent implements OnInit {
       },
     });
   }
+
   pageClicked(pageNum: number): void {
     if (pageNum !== this.page && pageNum > 0 && pageNum <= this.totalPage) {
       this.page = pageNum;
@@ -62,13 +68,15 @@ export class UserComponent implements OnInit {
 
   searchPages(): void {
     this._SearchService.searchQuery$.subscribe((query) => {
-      this.filteredUsers = this.data.filter((user: any) =>
-        user.first_name.toLowerCase().includes(query.toLowerCase())
-      );
+      if (query.trim() == '') {
+        this.filteredUsers = this.data;
+        this.isSearch = true;
+      } else {
+        this.filteredUsers = this.dataName.filter((user: any) =>
+          user.first_name.toLowerCase().includes(query.toLowerCase())
+        );
+        this.isSearch = false;
+      }
     });
-    if (this.filteredUsers.length === 0 && this.page < this.totalPage) {
-      this.page++;
-      this.getAllUser();
-    }
   }
 }
