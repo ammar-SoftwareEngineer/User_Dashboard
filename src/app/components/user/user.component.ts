@@ -36,6 +36,7 @@ export class UserComponent implements OnInit {
         this.filteredUsers = this.data;
         this.page = response.page;
         this.totalPage = response.total_pages;
+
         for (let i = 1; i <= this.totalPage; i++) {
           this.pages.push(i);
           this._UserService.getAllUsers(i).subscribe({
@@ -44,7 +45,6 @@ export class UserComponent implements OnInit {
             },
           });
         }
-        console.log(this.pages);
         this.prePage = response.per_page;
         this.total = response.total;
       },
